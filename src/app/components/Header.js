@@ -6,7 +6,7 @@ const Header = () => {
   const [searchcity, setSearchCity] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const [weatherData, setWeatherData] = useState(null);
-    const apiKey = process.env.NEXT_PUBLIC_X_RapidAPI_Key;
+    const apiKey = '03ad0eb30amshd012f52ae904cf5p17497ejsnb4ea71c6f938';
 
     const handleChange = async (e) => {
         const inputCity = e.target.value;
@@ -16,7 +16,7 @@ const Header = () => {
                 params: { q: inputCity },
                 headers: {
                     'NEXT_PUBLIC_X_RapidAPI_Key': apiKey,
-                    'NEXT_PUBLIC_X_RapidAPI_Host': process.env.NEXT_PUBLIC_X_RapidAPI_Host
+                    'NEXT_PUBLIC_X_RapidAPI_Host': 'weatherapi-com.p.rapidapi.com'
                 }
             });
             setSuggestions(response.data);
@@ -32,7 +32,7 @@ const Header = () => {
                 params: { q: suggestedCity },
                 headers: {
                     'NEXT_PUBLIC_X_RapidAPI_Key': apiKey,
-                    'NEXT_PUBLIC_X_RapidAPI_Host': process.env.NEXT_PUBLIC_X_RapidAPI_Host
+                    'NEXT_PUBLIC_X_RapidAPI_Host': 'weatherapi-com.p.rapidapi.com'
                 }
             });
             setWeatherData(response.data);

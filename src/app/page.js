@@ -5,8 +5,6 @@ import Header from './components/Header';
 import Today from './components/Today';
 import Footer from './components/Footer';
 import Hourly from './components/Hourly';
-import { configDotenv } from 'dotenv';
-
 
 const Page = () => {
   const [data, setData] = useState();
@@ -27,7 +25,7 @@ const Page = () => {
     setShowToday(false); // Hide Today component
     setShowHourly(true); // Show Hourly component
   };
-  console.log(process.env.a,"afjasdhfjk")
+
   useEffect(() => {
       if('geolocation' in navigator) {
           navigator.geolocation.getCurrentPosition(({ coords }) => {
@@ -47,8 +45,8 @@ const Page = () => {
         url: 'https://weatherapi-com.p.rapidapi.com/current.json',
         params: { q: `${laatitude},${loongitude}` }, 
         headers: {
-          'NEXT_PUBLIC_X_RapidAPI_Key': process.env.NEXT_PUBLIC_X_RapidAPI_Key,
-          'NEXT_PUBLIC_X_RapidAPI_Host': process.env.NEXT_PUBLIC_X_RapidAPI_Host
+          'X-RapidAPI-Key': process.env.NEXT_PUBLIC_X_RapidAPI_Api,
+          'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
         }
       };
      
@@ -76,8 +74,8 @@ const Page = () => {
         days: '10'
       },
       headers: {
-        'NEXT_PUBLIC_X_RapidAPI_Key': process.env.NEXT_PUBLIC_X_RapidAPI_Key,
-        'NEXT_PUBLIC_X_RapidAPI_Host': process.env.NEXT_PUBLIC_X_RapidAPI_Host
+        'X-RapidAPI-Key': process.env.NEXT_PUBLIC_X_RapidAPI_Api,
+        'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
       }
     };
   
@@ -104,7 +102,7 @@ const Page = () => {
   const [searchcity, setSearchCity] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [weatherData, setWeatherData] = useState(null);
-  const apiKey = process.env.NEXT_PUBLIC_X_RapidAPI_Key;
+  const apiKey = process.env.NEXT_PUBLIC_X_RapidAPI_Api;
 
   const handleChange = async (e) => {
       const inputCity = e.target.value;
@@ -113,8 +111,8 @@ const Page = () => {
           const response = await axios.get('https://weatherapi-com.p.rapidapi.com/search.json', {
               params: { q: inputCity },
               headers: {
-                  'NEXT_PUBLIC_X_RapidAPI_Key': apiKey,
-                  'NEXT_PUBLIC_X_RapidAPI_Host': process.env.NEXT_PUBLIC_X_RapidAPI_Host
+                  'X-RapidAPI-Key': apiKey,
+                  'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
               }
           });
           setSuggestions(response.data);
@@ -129,8 +127,8 @@ const Page = () => {
       const response = await axios.get('https://weatherapi-com.p.rapidapi.com/search.json', {
         params: { q: suggestedCity },
         headers: {
-          'NEXT_PUBLIC_X_RapidAPI_Key': apiKey,
-          'NEXT_PUBLIC_X_RapidAPI_Host': process.env.NEXT_PUBLIC_X_RapidAPI_Host
+          'X-RapidAPI-Key': apiKey,
+          'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
         }
       });
       setWeatherData(response.data);
@@ -140,7 +138,7 @@ const Page = () => {
       console.error(error);
     }
   };
-  console.log(process.env.NEXT_PUBLIC_X_RapidAPI_Host,"searchcitysearchcitysearchcity")
+  console.log(searchcity,"searchcitysearchcitysearchcity")
   return (
     <div className="bg-white text-black">
           <div>
